@@ -317,7 +317,8 @@ contract ERC721r is Context, ERC165, IERC721, IERC721Metadata {
             // This means the index itself is not an available token, but the val at that index is.
             result = valAtIndex;
         }
-
+         
+        // result가 0이면 사용 불가능 하다는 의미
         uint256 lastIndex = updatedNumAvailableTokens - 1;
         if (indexToUse != lastIndex) {
             // Replace the value at indexToUse, now that it's been used.
