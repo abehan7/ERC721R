@@ -300,16 +300,20 @@ contract ERC721r is Context, ERC165, IERC721, IERC721Metadata {
     }
 
     // Implements https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle. Code taken from CryptoPhunksV2
+    // 여기부터가 중요
     function getAvailableTokenAtIndex(uint256 indexToUse, uint updatedNumAvailableTokens)
         internal
         returns (uint256)
     {
         uint256 valAtIndex = _availableTokens[indexToUse];
         uint256 result;
+        
+        // 아무것도 안들어있으면 0, 사용가능하다는 의미
         if (valAtIndex == 0) {
             // This means the index itself is still an available token
             result = indexToUse;
         } else {
+            // 사용불가
             // This means the index itself is not an available token, but the val at that index is.
             result = valAtIndex;
         }
